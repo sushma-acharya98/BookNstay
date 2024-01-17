@@ -2,11 +2,12 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
+app.use(express.json())
 const userRoute = require('./routes/user')
 app.use(userRoute)
 const port = process.env.PORT
 
-app.post('/', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
