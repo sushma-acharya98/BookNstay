@@ -15,5 +15,22 @@
 -Expressjs
 -NextUI(LIBRARY)
 -mongoose
--
+-formik
+-yup
+-framer-motion
+-react-tailwindcss-datepicker
+
+##Folder Structure
+-client
+  -src
+    -app
+      -login
+        -register
+    -components
+-server
+  -src
+    -controllers
+    -db
+    -models
+    -routes
 
