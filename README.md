@@ -5,3 +5,15 @@
 -User authentication  
 -User authorization
 -Hotel listing and details
+
+## Prerequisites
+-Node.js and npm
+-Nodemon
+-MongoDB
+
+## installation
+-Expressjs
+-NextUI(LIBRARY)
+-mongoose
+-
+
