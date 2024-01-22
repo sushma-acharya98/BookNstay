@@ -1,3 +1,4 @@
+'use client'
 const express = require('express')
 router = express.Router()
 const {registerNewUser}  = require('../controllers/user')
