@@ -30,7 +30,8 @@
 
 -react-tailwindcss-datepicker
 
-##Folder Structure
+## Folder Structure
+ 
 -client
 
     -src
@@ -54,5 +55,10 @@
      -models
 
      -routes
+
+ ## Usage    
+
+ npm run dev
+
   
 

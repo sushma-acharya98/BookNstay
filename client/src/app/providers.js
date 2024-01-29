@@ -1,4 +1,4 @@
-// app/layout.tsx
+
 import {provider} from "./providers";
 import "./globals.css";
 export default function RootLayout({children}) {
