@@ -6,7 +6,8 @@ export default function App() {
           <Navbar position="static">
             <NavbarBrand className="gap-2">
               <Link href="#">
-                  <Image className="sitelogo" src="/bookingapp.png" width={100} height={75} alt="Booking App Logo" />
+                  BookNstay
+                  {/* <Image className="sitelogo" src="/bookingapp.png" width={100} height={75} alt="Booking App Logo" /> */}
               </Link>
             </NavbarBrand>
             <NavbarContent className="hidden sm:flex gap-4" justify="center">

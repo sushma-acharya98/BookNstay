@@ -1,167 +1,123 @@
-// 'use client'
-// import React from 'react';
-// import { useFormik } from 'formik';
-// import * as Yup from 'yup';
-// import {Input,Button} from "@nextui-org/react";
-// import { useRouter } from 'next/navigation';
-// import styles from './Register.module.css'; // Import your CSS file
-
-// const SignupForm = () => {
-//   const router = useRouter()
-
-//    const SignupSchema = Yup.object().shape({
-//      email: Yup.string().email('Invalid email').required('Required'),
-//    email: Yup.string().email('Invalid email').required('Required'),
-//  });
- 
-//  const registerUser = async(values)=> {
-//  const res=  await fetch('http://localhost:5000/register/',{
-//     method: 'POST',
-//     headers: {'Content-Type':'application/json' },
-//     body: JSON.stringify(values)
-//   })
-//   const data = await res.json()
-//   if(res.status == 200) {
-//     router.push('/login')
-//   }
-//   toast(data.msg)
-  
-//  }
-//   const formik = useFormik({
-//     initialValues: {
-//       phoneNumber: '',
-//       email: '',
-//       password: '',
-//       role:''
-//     },
-//     validationSchema:SignupSchema,
-//     onSubmit: values => {
-//       registerUser(values)
-//     },
-//   });
-
-//   return (
-    
-//     <form onSubmit={formik.handleSubmit}>
-//       <h2>Register</h2>
-//       <Input 
-//        id="phoneNumber"
-//        label="phoneNumber"
-//        name="phoneNumber"
-//        type="text"
-//        onChange={formik.handleChange}
-//        value={formik.values.phoneNumber}
-//       />
-//         {formik?.errors.phoneNumber}
-//       <Input 
-//        id="email"
-//        name="email"
-//        type="text"
-//        onChange={formik.handleChange}
-//        value={formik.values.email}
-//       label="email" />
-//               {formik?.errors.email}
-//          <Input 
-//        id="password"
-//        name="password"
-//        type="password"
-//        onChange={formik.handleChange}
-//        value={formik.values.password}
-//       label="password" />
-//           <Input 
-//        id="role"
-//        name="role"
-//        type="text"
-//        onChange={formik.handleChange}
-//        value={formik.values.role}
-//       label="role" />
-//       <Button type="submit">Submit</Button>
-//     </form>
-  
-//   );
-// };
-
-// export default SignupForm
-// SignupForm.js
-
 'use client'
-import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { Input, Button } from "@nextui-org/react";
-import { useRouter } from 'next/navigation';
-import styles from './Register.module.css'; // Import your CSS module
+import { Formik, Field, Form } from "formik";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
+import Link from "next/link";
 
-const SignupForm = () => {
-  const router = useRouter()
-
+const page = () => {
+  const router = useRouter();
   const SignupSchema = Yup.object().shape({
-    phoneNumber: Yup.string().required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
-    password: Yup.string().required('Required'),
-    role: Yup.string().required('Required'),
+    fullName: Yup.string().required("Fullname is required"),
+    phoneNumber: Yup.string().min(6, "Invalid Phonenumber").required("Phonenumber is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
   });
 
-  const registerUser = async (values) => {
-    const res = await fetch('http://localhost:5000/register/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values)
-    });
-    const data = await res.json();
-    if (res.status === 200) {
-      router.push('/login');
+  const handleRegister = async (values) => {
+    try {
+      const res = await fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      const data = await res.json();
+      if (res.status === 200) {
+        router.push("/login");
+      }
+      toast(data.msg);
+    } catch (error) {
+      console.error(error);
     }
-    // Assuming you have a toast function for displaying messages
-    toast(data.msg);
   };
 
-  const formik = useFormik({
-    initialValues: {
-      phoneNumber: '',
-      email: '',
-      password: '',
-      role: ''
-    },
-    validationSchema: SignupSchema,
-    onSubmit: values => {
-      registerUser(values);
-    },
-  });
-
   return (
-    <form className={styles.registerForm} onSubmit={formik.handleSubmit}>
-      <h2>Register</h2>
-      <Input
-        id="phoneNumber"
-        label="Phone Number"
-        name="phoneNumber"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.phoneNumber}
-      />
-      {formik?.errors.phoneNumber && <div className={styles.error}>{formik.errors.phoneNumber}</div>}
-      <Input
-        id="email"
-        name="email"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.email}
-        label="Email"
-      />
-      {formik?.errors.email && <div className={styles.error}>{formik.errors.email}</div>}
-      <Input
-        id="password"
-        name="password"
-        type="password"
-        onChange={formik.handleChange}
-        value={formik.values.password}
-        label="Password"
-      />
-      {formik?.errors.role && <div className={styles.error}>{formik.errors.role}</div>}
-      <Button className='submit' type="submit">Submit</Button>
-    </form>
+    <div className="flex mt-12 min-w-full justify-center">
+      <Formik
+        initialValues={{
+          fullName: "",
+          phoneNumber: "",
+          email: "",
+          password: "",
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={(values) => {
+          handleRegister(values);
+        }}
+      >
+        {({ errors }) => (
+          <Form className="max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <h2 className="font-bold text-2xl text-blue-500">Register Your Account</h2>
+            <div className="mb-5">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fullName">
+                Full Name
+              </label>
+              <Field
+                name="fullName"
+                type="text"
+                className={`w-full lg:w-96 p-3 border rounded ${errors.fullName ? 'border-red-500' : 'border-gray-300'}`}
+              />
+              {errors.fullName && <p className="absolute text-red-500 text-xs">{errors.fullName}</p>}
+            </div>
+
+            <div className="mb-5">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phoneNumber">
+                Phone Number
+              </label>
+              <Field
+                name="phoneNumber"
+                type="text"
+                className={`w-full p-3 border rounded ${errors.phoneNumber ? 'border-red-500' : 'border-gray-300'}`}
+              />
+              {errors.phoneNumber && (
+                <p className="absolute text-red-500 text-xs">{errors.phoneNumber}</p>
+              )}
+            </div>
+
+            <div className="mb-5">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                Email
+              </label>
+              <Field
+                name="email"
+                type="email"
+                className={`w-full p-3 border rounded ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+              />
+              {errors.email && <p className="absolute text-red-500 text-xs">{errors.email}</p>}
+            </div>
+
+            <div className="mb-5">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                Password
+              </label>
+              <Field
+                name="password"
+                type="password"
+                className={`w-full p-3 border rounded ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
+              />
+              {errors.password && <p className="absolute text-red-500 text-xs">{errors.password}</p>}
+            </div>
+
+            <p className="text-sm">
+              Already have an account?{" "}
+              <Link href="/login" className="text-blue-700 underline">
+                Login
+              </Link>
+            </p>
+            <button
+              type="submit"
+              className="w-full mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Register
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
-export default SignupForm;
+export default page;
