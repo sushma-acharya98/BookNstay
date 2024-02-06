@@ -1,15 +1,10 @@
-// components/RoomManagement.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+
+import React from 'react'
 
 const RoomManagement = () => {
-
   return (
-    <div>
-      <h3>Room Management</h3>
-      {/*  how to Display rooms here  */}
-    </div>
-  );
-};
+    <div>page</div>
+  )
+}
 
-export default RoomManagement;
+export default   RoomManagement;
