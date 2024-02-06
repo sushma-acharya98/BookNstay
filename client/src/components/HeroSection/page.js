@@ -43,21 +43,7 @@ const Page = () => {
                     />
      
                 </div>
-                {/* <div class="w-full mr-4">
-                  <label for="destination" class="sr-only">Where are you going?</label>
-                  <input
-                    id="destination"
-                    name="ss"
-                    class="w-full p-3 border rounded-md focus:outline-none focus:border-blue-500"
-                    placeholder="Where are you going?"
-                    autocomplete="off"
-                    aria-label="Where are you going?"
-                    aria-expanded="false"
-                    role="combobox"
-                  />
-                </div> */}
                 <div className='w-full mr-4'>
-                {/* <div class="relative" tabindex="-1"> */}
                   <button data-testid="occupancy-config" aria-controls=":rh:" aria-expanded="false" type="button" class="flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                       <span class="flex items-center space-x-2">
                           <span class="flex-shrink-0 h-6 w-6">
