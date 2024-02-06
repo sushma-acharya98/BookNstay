@@ -30,6 +30,8 @@
 
 -react-tailwindcss-datepicker
 
+- react-date-range
+
 ## Folder Structure
  
 -client

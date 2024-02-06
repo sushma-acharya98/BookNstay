@@ -4,35 +4,37 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Link from "next/link";
+import { Button } from "@nextui-org/react";
 
 const page = () => {
   const router = useRouter();
   const SignupSchema = Yup.object().shape({
-    fullName: Yup.string().required("Fullname is required"),
-    phoneNumber: Yup.string().min(6, "Invalid Phonenumber").required("Phonenumber is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
+    fullName: Yup.string().required("required"),
+    phoneNumber: Yup.string().min(4, "Invalid Phonenumber").required("required"),
+    email: Yup.string().email("Invalid email").required("required"),
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
+      .min(4, "Password must be at least 4 letters")
       .required("Password is required"),
   });
 
   const handleRegister = async (values) => {
-    try {
-      const res = await fetch("http://localhost:5000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+  try {
+    const res = await fetch("http://localhost:3001/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
 
-      const data = await res.json();
-      if (res.status === 200) {
-        router.push("/login");
-      }
-      toast(data.msg);
-    } catch (error) {
-      console.error(error);
+    const data = await res.json();
+    if (res.status === 200) {
+      router.push('/login'); // Use router to navigate
     }
-  };
+    toast(data.msg);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
   return (
     <div className="flex mt-12 min-w-full justify-center">
@@ -50,7 +52,7 @@ const page = () => {
       >
         {({ errors }) => (
           <Form className="max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-              <h2 className="font-bold text-2xl text-blue-500">Register Your Account</h2>
+              <h2 className="font-bold text-2xl text-blue-500">Register</h2>
             <div className="mb-5">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fullName">
                 Full Name
@@ -100,19 +102,19 @@ const page = () => {
               />
               {errors.password && <p className="absolute text-red-500 text-xs">{errors.password}</p>}
             </div>
+            <div className="text-sm">
+              <p>
+                  Already have an account?{" "}
+                  <Link href="/login" className="text-blue-700 underline">
+                    Signin
+                  </Link>
+              </p>
+            </div>
+            
+            <Button className="bg-blue-500 text-white px-4 py-2 rounded text-center" type="submit">
 
-            <p className="text-sm">
-              Already have an account?{" "}
-              <Link href="/login" className="text-blue-700 underline">
-                Login
-              </Link>
-            </p>
-            <button
-              type="submit"
-              className="w-full mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
               Register
-            </button>
+            </Button>
           </Form>
         )}
       </Formik>

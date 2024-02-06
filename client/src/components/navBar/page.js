@@ -1,13 +1,14 @@
 'use client'
 import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Image} from "@nextui-org/react";
+import { FaHotel } from "react-icons/fa6";
 export default function App() {
   return (
-          <Navbar position="static">
+          <Navbar className="bg-zinc-50" position="static">
             <NavbarBrand className="gap-2">
               <Link href="#">
-                  BookNstay
-                  {/* <Image className="sitelogo" src="/bookingapp.png" width={100} height={75} alt="Booking App Logo" /> */}
+                  <FaHotel className="color-blue-500" />
+                  <p className="text-blue font-bold">BookNstay</p>
               </Link>
             </NavbarBrand>
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
@@ -40,14 +41,14 @@ export default function App() {
             <NavbarContent justify="end">
                 <NavbarItem className="hidden lg:flex">
                   <Link href="/login" passHref>
-                    <Button as="a" color="primary" variant="flat">
+                    <Button className="bg-blue-500 text-white" as="a" color="primary" variant="flat">
                       login
                     </Button>
                   </Link>
                 </NavbarItem>
                 <NavbarItem>
                   <Link href="/register" passHref>
-                    <Button as="a" color="primary" variant="flat">
+                    <Button className="bg-blue-500 text-white" as="a" color="primary" variant="flat">
                       Register
                     </Button>
                   </Link>
