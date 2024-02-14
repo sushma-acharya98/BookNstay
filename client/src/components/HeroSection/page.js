@@ -1,8 +1,6 @@
 'use client'
 import React from 'react';
 import { useState } from 'react';
-// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-// import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import DatePicker from "react-multi-date-picker"
 const Page = () => {
   const [values, setValues] = useState([
@@ -56,10 +54,9 @@ const Page = () => {
                       </span>
                   </button>
                 </div>
+                <button className="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent outline-none focus:z-10 focus:outline-2 focus:outline-focus focus:outline-offset-2 px-4 min-w-20 h-10 text-sm gap-2 rounded-md hover:bg-blue-600 bg-blue-500 text-white" role="button" tabindex="0">Search</button>
 
-                <button type="button" class="px-6 py-3 bg-blue-500 text-white rounded-md">
-                  Search
-                </button>
+               
               </div>
             </form>
         </div>

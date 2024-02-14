@@ -7,7 +7,7 @@ const BookingManagement = () => {
 
   useEffect(() => {
     // Fetch bookings from the backend
-    axios.get('/api/bookings').then((response) => setBookings(response.data));
+    axios.get('/bookings').then((response) => setBookings(response.data));
   }, []);
 
   return (

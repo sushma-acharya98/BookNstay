@@ -1,15 +1,11 @@
-
-import {provider} from "./providers";
-import "./globals.css";
-export default function RootLayout({children}) {
+'use client'
+import { NextUIProvider } from "@nextui-org/react";
+// import "./globals.css";
+export default function Providers({children}) {
   return (
-    <html lang="en" className='dark'>
-      <body>
-        <provider>
-          {children}
-        </provider>
-      </body>
-    </html>
+    <NextUIProvider>
+      {children}
+    </NextUIProvider>
   );
 }
 
