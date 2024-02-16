@@ -14,7 +14,7 @@ const SignInForm = () => {
   const dispatch =useDispatch()
 
   const SignupSchema = Yup.object().shape({
-    username: Yup.string().required('Username is required'),
+    PhoneNumber: Yup.string().required('PhoneNumber is required'),
     password: Yup.string().required('Password is required'),
   });
 
@@ -36,17 +36,6 @@ const SignInForm = () => {
   }
   };
 
-  const formik = useFormik({
-    initialValues: {
-      phoneNumber: "",
-      password: "",
-    },
-    validationSchema: SignupSchema,
-    onSubmit: values => {
-      loginUser(values);
-    },
-  });
-
   return (
     <div className="flex mt-12 min-w-full justify-center">
       <Formik
@@ -58,7 +47,7 @@ const SignInForm = () => {
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
-          handleRegister(values);
+          loginUser(values);
         }}
       >
         {({ errors }) => (

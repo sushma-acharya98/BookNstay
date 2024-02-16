@@ -3,7 +3,7 @@
 // import { Inter } from 'next/font/google'
 
 // import {Providers} from "./providers";
-// const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] }
 // import 'react-toastify/dist/ReactToastify.css';
 // import ReduxProvider from '../redux/reduxProvider';
 
@@ -24,7 +24,6 @@
 'use client'
 import {  providers} from "./providers";
 
-// import ReduxProvider from '@/reduxProvider';
 import ReduxProvider from "@/redux/reduxProvider";
  import './globals.css'
 export default function RootLayout({ children }) {
