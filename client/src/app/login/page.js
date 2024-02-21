@@ -60,7 +60,8 @@ const SignInForm = () => {
               <Field
                 name="phoneNumber"
                 type="text"
-                className={`w-full p-3 border rounded ${errors.phoneNumber ? 'border-red-500' : 'border-gray-300'}`}
+						    className={`w-full lg:w-96 p-3 border rounded ${errors.phoneNumber ? 'border-red-500' : 'border-gray-300'}`}
+                // className={`w-full p-3 border rounded ${errors.phoneNumber ? 'border-red-500' : 'border-gray-300'}`}
               />
               {errors.phoneNumber && (
                 <p className="absolute text-red-500 text-xs">{errors.phoneNumber}</p>
@@ -74,7 +75,8 @@ const SignInForm = () => {
               <Field
                 name="password"
                 type="password"
-                className={`w-full p-3 border rounded ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
+						    className={`w-full lg:w-96 p-3 border rounded ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
+                // className={`w-full p-3 border rounded ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
               />
               {errors.password && <p className="absolute text-red-500 text-xs">{errors.password}</p>}
             </div>
@@ -96,46 +98,6 @@ const SignInForm = () => {
       </Formik>
     </div>
     
-  //   <div className="flex mt-12 min-w-full justify-center">
-
-  //  <form className="max-w-2xl mx-auto mt-40 p-5 border border-gray-300 rounded shadow">
-  //      <h2 className="font-bold text-2xl text-blue-500">Login To Your Account</h2>
-  //     <Input
-  //       className="mb-4"
-  //       id="phonenumber"
-  //       label="phonenumnber"
-  //       name="phonenumber"
-  //       type="text"
-  //       onChange={formik.handleChange}
-  //       value={formik.values.username}
-  //     />
-  //     {formik?.errors.phoneNumber && <div className="text-red-500">{formik.errors.phoneNumber}</div>}
-  //     <Input
-  //       className="mb-4"
-  //       id="password"
-  //       name="password"
-  //       type="password"
-  //       onChange={formik.handleChange}
-  //       value={formik.values.password}
-  //       label="Password"
-  //     />
-  //     {formik?.errors.password && <div className="text-red-500">{formik.errors.password}</div>}
-  //     <div className="text-sm">
-  //       <p>
-  //       Don't have an account?{' '}
-  //       <Link href="/register" className="text-blue-700 underline">
-  //         Signup
-  //       </Link>
-  //     </p>
-  //     </div>
-      
-  //     <div className="flex justify-center">
-  //       <Button className="bg-blue-500 text-white px-4 py-2 rounded text-center" type="submit">
-  //         Login
-  //       </Button>
-  //     </div>
-  //     </form>
-  //   </div>
   );
 };
 
