@@ -1,6 +1,4 @@
 
-
-// export default store;
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import  userReducer  from './reducerSlice/userSlice';
 import  logger  from 'redux-logger';
