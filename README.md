@@ -44,7 +44,22 @@
 
       -register
 
-    -components
+      -component
+
+         -footer
+
+         -Herosection
+
+         -layout 
+
+         -navbar
+
+      -config(api)
+
+      -redux
+
+
+
 
 -server
 
